@@ -11,26 +11,13 @@
       <h2>Data Table</h2>
       <button onclick="openAddForm()">Add New</button>
 
-      <table id="dataTable">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Hobbies</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-
       <div id="addForm" class="modal">
         <div class="modal-content">
           <span class="close" onclick="closeAddForm()">&times;</span>
           <label>Name:</label>
           <input type="text" id="nameInput" />
-
+          <input type="text" id="idInput" style="display:none" />
+    
           <label>Phone Number:</label>
           <input type="text" id="phoneNumberInput" />
 
@@ -43,6 +30,9 @@
           <button onclick="saveFormData()">Save</button>
         </div>
       </div>
+    </div>
+    <div id="table-container">
+
     </div>
 
     <script src="app.js"></script>

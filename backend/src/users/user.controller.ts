@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete,Put } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from '../entities/user.entity';
 import * as nodemailer from 'nodemailer';
@@ -14,11 +14,25 @@ export class UserController {
 
   @Post()
   async create(@Body() user: User): Promise<User> {
-    const savedUser = await this.userService.create(user);
-
-    this.sendEmailNotification(savedUser);
+    if(user.id){
+      console.log('insideupdate');
+      const updatedUser = await this.userService.updateById(user.id,user);
+      return new User;
+    }
+    else{
+      const savedUser = await this.userService.create(user);
+      console.log(user);
+    
+    // this.sendEmailNotification(savedUser);
 
     return savedUser;
+    }
+  }
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    const userId = parseInt(id, 10);
+    const deletedUser = await this.userService.delete(userId);
+    return deletedUser;
   }
 
   private sendEmailNotification(user: User): void {
