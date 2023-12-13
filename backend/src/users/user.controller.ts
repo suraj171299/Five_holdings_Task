@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Param, Delete,Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete,Put, ValidationPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from '../entities/user.entity';
-import {CreatedUser} from '../user_details/user.details'
+import { CreatedUser } from '../user_details/user.details'
 import * as nodemailer from 'nodemailer';
 
 @Controller('users')
@@ -14,7 +14,7 @@ export class UserController {
   }
 
   @Post()
-  async create(@Body() user: User): Promise<User> {
+  async create(@Body(new ValidationPipe()) user: CreatedUser): Promise<User> {
     if(user.id){
       console.log('insideupdate');
       const updatedUser = await this.userService.updateById(user.id,user);

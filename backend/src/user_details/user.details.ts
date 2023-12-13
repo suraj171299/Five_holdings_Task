@@ -1,20 +1,22 @@
 import { IsEmail,IsInt,IsString, IsNotEmpty, Length } from "class-validator";
 
 export class CreatedUser{
+
+    id: number;
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({message:'Please provide a valid name'})
     name: string;
 
-    @IsNotEmpty()
+    @IsNotEmpty({message:'Please provide a valid phone-number'})
     @Length(10)
     phoneNumber: string;
 
-    @IsEmail(null, {message:'Please provide a valid email'})
-    @IsNotEmpty()
+    @IsEmail()
+    @IsNotEmpty({message:'Please provide a valid email'})
     @IsString()
     email: string;
 
-    @IsNotEmpty()
+    @IsNotEmpty({message:'Please provide a valid input'})
     @IsString()
     hobbies: string;
 }
