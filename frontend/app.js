@@ -32,8 +32,25 @@ async function handleUpdate(item){
     openAddForm();
     console.log(item);
 }
-function handleSend(){
-    
+async function handleSend(item){
+    console.log('inside send',item);
+    try {
+        const response = await fetch("http://localhost:3000/users/send-email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(item),
+        });
+
+        if (response.ok) {
+            console.log("Mail Sent");
+        } else {
+            console.error("Failed to send email:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
 function openAddForm() {
     var addForm = document.getElementById("addForm");
@@ -87,7 +104,7 @@ function createTable(data) {
         const send = row.insertCell()
         const sendButton = document.createElement('button');
         sendButton.textContent = "Send";
-        // sendButton.addEventListener('click',()=>handlesend())
+        sendButton.addEventListener('click',()=>handleSend(item))
         send.appendChild(sendButton);
     });
 
