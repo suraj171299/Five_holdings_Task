@@ -32,6 +32,9 @@ async function handleUpdate(item){
     openAddForm();
     console.log(item);
 }
+function handleSend(){
+    
+}
 function openAddForm() {
     var addForm = document.getElementById("addForm");
     addForm.style.display = "block";
@@ -80,6 +83,12 @@ function createTable(data) {
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", () => handleDelete(item.id));
         deleteCell.appendChild(deleteButton);
+
+        const send = row.insertCell()
+        const sendButton = document.createElement('button');
+        sendButton.textContent = "Send";
+        // sendButton.addEventListener('click',()=>handlesend())
+        send.appendChild(sendButton);
     });
 
     // Append the table to the container

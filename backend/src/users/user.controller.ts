@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete,Put } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from '../entities/user.entity';
+import {CreatedUser} from '../user_details/user.details'
 import * as nodemailer from 'nodemailer';
 
 @Controller('users')
@@ -23,7 +24,7 @@ export class UserController {
       const savedUser = await this.userService.create(user);
       console.log(user);
     
-    // this.sendEmailNotification(savedUser);
+    this.sendEmailNotification(savedUser);
 
     return savedUser;
     }
@@ -34,26 +35,27 @@ export class UserController {
     const deletedUser = await this.userService.delete(userId);
     return deletedUser;
   }
-
-  private sendEmailNotification(user: User): void {
+  @Post('send-email')
+  async sendEmailNotification(@Body() user: User): Promise<void> {
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
       auth: {
-        user: 'email@gmail.com',
-        pass: 'email_password',
+        user: 'taskdemo17@gmail.com',
+        pass: 'hlml yjsg qeeq coec',
       },
     });
 
     const mailOptions = {
-      from: 'your_email@gmail.com',
-      to: 'recipient_email@example.com',
+      from: 'taskdemo17@gmail.com',
+      to: 'surajpadalkar1712@gmail.com',
       subject: 'New User Created',
-      text: `A new user has been created:\n\nName: ${user.name}\nPhone Number: ${user.phoneNumber}\nEmail: ${user.email}\nHobbies: ${user.hobbies}`,
+      text: `Here are your User Details:\n\nName: ${user.name}\nPhone Number: ${user.phoneNumber}\nEmail: ${user.email}\nHobbies: ${user.hobbies}`,
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error('Error sending email:', error);
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error('Error sending email:', err);
       } else {
         console.log('Email sent:', info.response);
       }

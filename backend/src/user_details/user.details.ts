@@ -1,12 +1,13 @@
-import { IsEmail,IsInt,IsString, IsNotEmpty } from "class-validator";
+import { IsEmail,IsInt,IsString, IsNotEmpty, Length } from "class-validator";
 
-export class UserDetails{
+export class CreatedUser{
     @IsString()
     @IsNotEmpty()
     name: string;
 
     @IsNotEmpty()
-    phoneNumber: number
+    @Length(10)
+    phoneNumber: string;
 
     @IsEmail(null, {message:'Please provide a valid email'})
     @IsNotEmpty()
