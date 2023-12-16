@@ -1,6 +1,6 @@
 async function handleDelete(id){
   try {
-    const response = await fetch("http://localhost:3000/users/"+id, {
+    const response = await fetch("five-holdings-task-roc7ttpcr.vercel.app/users/"+id, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -35,7 +35,7 @@ async function handleUpdate(item){
 async function handleSend(item){
     console.log('inside send',item);
     try {
-        const response = await fetch("http://localhost:3000/users/send-email", {
+        const response = await fetch("five-holdings-task-roc7ttpcr.vercel.app/users/send-email", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -130,7 +130,7 @@ async function saveFormData() {
       console.log('insideif');
     }
     try {
-        const response = await fetch("http://localhost:3000/users", {
+        const response = await fetch("five-holdings-task-roc7ttpcr.vercel.app/users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -159,7 +159,7 @@ async function saveFormData() {
 async function myFunction() {
     console.log("HTML is fully loaded");
     try {
-        const response = await fetch("http://localhost:3000/users", {
+        const response = await fetch("five-holdings-task-roc7ttpcr.vercel.app/users", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
