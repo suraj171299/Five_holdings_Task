@@ -130,7 +130,7 @@ async function saveFormData() {
       console.log('insideif');
     }
     try {
-        const response = await fetch("http://localhost:3000/users", {
+        const response = await fetch(`{url}/users`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -142,6 +142,7 @@ async function saveFormData() {
             closeAddForm();
         } else {
             console.error("Failed to save data:", response.statusText);
+            // alert(response.message);
         }
     } catch (error) {
         console.error("Error:", error);
@@ -151,7 +152,7 @@ async function saveFormData() {
 async function myFunction() {
     console.log("HTML is fully loaded");
     try {
-        const response = await fetch("http://localhost:3000/users", {
+        const response = await fetch(`{url}/users`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
