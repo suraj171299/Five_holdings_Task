@@ -15,7 +15,7 @@
 2. Change Directory
 
     ```bash
-    cd nestjs-crud-app
+    cd backend
 
 3. Install Dependencies
 
